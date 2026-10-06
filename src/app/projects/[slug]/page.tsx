@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
+import { Container, Heading, sectionSpacing, Text } from "@/components/ui";
 import { getProjectBySlug } from "@/data/projects";
 
 export default function ProjectPage({
@@ -10,7 +11,7 @@ export default function ProjectPage({
   return (
     <Suspense
       fallback={
-        <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col px-6 py-16" />
+        <Container as="main" className={`flex-1 ${sectionSpacing}`} />
       }
     >
       <ProjectContent params={params} />
@@ -31,9 +32,13 @@ async function ProjectContent({
   }
 
   return (
-    <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col px-6 py-16">
-      <h1 className="text-3xl font-semibold tracking-tight">{project.title}</h1>
-      {project.summary ? <p className="mt-4">{project.summary}</p> : null}
-    </main>
+    <Container as="main" className={`flex flex-1 flex-col ${sectionSpacing}`}>
+      <Heading className="max-w-3xl">{project.title}</Heading>
+      {project.summary ? (
+        <Text variant="muted" className="mt-6 max-w-2xl">
+          {project.summary}
+        </Text>
+      ) : null}
+    </Container>
   );
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Container, Heading, sectionSpacing, Text } from "@/components/ui";
 import { certifications } from "@/data/certifications";
 
 export const metadata: Metadata = {
@@ -7,17 +8,17 @@ export const metadata: Metadata = {
 
 export default function CertificationsPage() {
   return (
-    <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col px-6 py-16">
-      <h1 className="text-3xl font-semibold tracking-tight">Certifications</h1>
+    <Container as="main" className={`flex flex-1 flex-col ${sectionSpacing}`}>
+      <Heading>Certifications</Heading>
       {certifications.length > 0 ? (
-        <ul className="mt-8 flex flex-col gap-4">
+        <ul className="mt-10 flex max-w-2xl flex-col gap-4">
           {certifications.map((certification) => (
             <li key={`${certification.issuer}-${certification.title}`}>
-              {certification.title}
+              <Text>{certification.title}</Text>
             </li>
           ))}
         </ul>
       ) : null}
-    </main>
+    </Container>
   );
 }
