@@ -1,5 +1,5 @@
-import { Container, Heading, sectionSpacing, Text } from "@/components/ui";
-import { site } from "@/data/site";
+import { Hero } from "@/components/hero/hero";
+import { Container, sectionSpacing } from "@/components/ui";
 
 export default function Home() {
   return (
@@ -7,8 +7,7 @@ export default function Home() {
       as="main"
       className={`flex flex-1 flex-col justify-center ${sectionSpacing}`}
     >
-      <Text variant="eyebrow">{site.role}</Text>
-      <Heading className="mt-5 max-w-4xl">{site.name}</Heading>
+      <Hero />
     </Container>
   );
 }

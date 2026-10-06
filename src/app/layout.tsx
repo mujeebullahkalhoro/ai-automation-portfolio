@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     default: site.name,
     template: `%s | ${site.name}`,
   },
-  description: site.role,
+  description: site.summary,
 };
 
 function HeaderFallback() {

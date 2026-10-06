@@ -1,6 +1,8 @@
 export type Site = {
   name: string;
   role: string;
+  summary: string;
+  github: string;
 };
 
 export type ProjectStatus = "in-progress" | "completed";

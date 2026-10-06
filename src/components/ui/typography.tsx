@@ -11,12 +11,20 @@ type HeadingProps = {
   children: ReactNode;
   className?: string;
   level?: 1 | 2 | 3;
+  size?: 1 | 2 | 3;
 };
 
-export function Heading({ children, className, level = 1 }: HeadingProps) {
+export function Heading({
+  children,
+  className,
+  level = 1,
+  size,
+}: HeadingProps) {
   const Tag = `h${level}` as const;
 
-  return <Tag className={cn(headingStyles[level], className)}>{children}</Tag>;
+  return (
+    <Tag className={cn(headingStyles[size ?? level], className)}>{children}</Tag>
+  );
 }
 
 const textStyles = {
