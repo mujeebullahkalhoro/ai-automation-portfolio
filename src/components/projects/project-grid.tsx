@@ -10,20 +10,31 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
     return null;
   }
 
-  const ordered = [...projects].sort(
-    (first, second) => Number(second.featured) - Number(first.featured),
-  );
+  const featured = projects.filter((project) => project.featured);
+  const rest = projects.filter((project) => !project.featured);
+  const [lead, ...featuredRest] = featured;
 
   return (
-    <ul className="mt-10 grid gap-4 md:grid-cols-2">
-      {ordered.map((project) => (
-        <li
-          key={project.slug}
-          className={project.featured ? "md:col-span-2" : undefined}
-        >
-          <ProjectCard project={project} />
-        </li>
-      ))}
-    </ul>
+    <div className="mt-10 flex flex-col gap-4">
+      {lead ? <ProjectCard project={lead} layout="featured" /> : null}
+      {featuredRest.length > 0 ? (
+        <ul className="grid gap-4 md:grid-cols-2">
+          {featuredRest.map((project) => (
+            <li key={project.slug}>
+              <ProjectCard project={project} />
+            </li>
+          ))}
+        </ul>
+      ) : null}
+      {rest.length > 0 ? (
+        <ul className="grid gap-4 md:grid-cols-2">
+          {rest.map((project) => (
+            <li key={project.slug}>
+              <ProjectCard project={project} />
+            </li>
+          ))}
+        </ul>
+      ) : null}
+    </div>
   );
 }

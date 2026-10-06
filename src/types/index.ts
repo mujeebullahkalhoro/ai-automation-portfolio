@@ -5,13 +5,13 @@ export type Site = {
   github: string;
 };
 
-export type ProjectStatus = "in-progress" | "completed";
+export type ProjectStatus = "completed" | "in-progress" | "private";
 
 export type Project = {
   title: string;
   slug: string;
-  description: string;
-  category: string;
+  description?: string;
+  category?: string;
   technologies: string[];
   thumbnail?: string;
   video?: string;

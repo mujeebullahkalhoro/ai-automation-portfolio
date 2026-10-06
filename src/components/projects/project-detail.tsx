@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ProjectTags } from "@/components/projects/project-tags";
 import { formatProjectStatus } from "@/components/projects/project-status";
+import { ProjectWorkflow } from "@/components/projects/project-workflow";
 import {
   Badge,
   ButtonLink,
@@ -16,7 +17,6 @@ type ProjectDetailProps = {
 
 const caseStudyFields = [
   ["Architecture", "architecture"],
-  ["Workflow", "workflow"],
   ["Challenges", "challenges"],
   ["Results", "results"],
 ] as const;
@@ -30,14 +30,16 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
     <article className="max-w-3xl">
       <TextLink href="/projects">All projects</TextLink>
       <div className="mt-8 flex flex-wrap gap-2">
-        <Badge tone="accent">{project.category}</Badge>
+        {project.category ? <Badge tone="accent">{project.category}</Badge> : null}
         <Badge>{formatProjectStatus(project.status)}</Badge>
         {project.featured ? <Badge>Featured</Badge> : null}
       </div>
       <Heading className="mt-4 max-w-3xl">{project.title}</Heading>
-      <Text variant="muted" className="mt-6">
-        {project.description}
-      </Text>
+      {project.description ? (
+        <Text variant="muted" className="mt-6">
+          {project.description}
+        </Text>
+      ) : null}
       <div className="mt-6">
         <ProjectTags technologies={project.technologies} />
       </div>
@@ -88,6 +90,16 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
             </ButtonLink>
           ) : null}
         </div>
+      ) : null}
+      {project.workflow ? (
+        <section className="mt-12">
+          <Heading level={2} size={3}>
+            Workflow
+          </Heading>
+          <div className="mt-4">
+            <ProjectWorkflow workflow={project.workflow} />
+          </div>
+        </section>
       ) : null}
       {caseStudyFields.map(([label, field]) => {
         const body = project[field];
