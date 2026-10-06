@@ -8,11 +8,21 @@ export type Site = {
 export type ProjectStatus = "in-progress" | "completed";
 
 export type Project = {
-  slug: string;
   title: string;
-  summary?: string;
-  status: ProjectStatus;
+  slug: string;
+  description: string;
+  category: string;
   technologies: string[];
+  thumbnail?: string;
+  video?: string;
+  githubUrl?: string;
+  demoUrl?: string;
+  featured: boolean;
+  status: ProjectStatus;
+  architecture?: string;
+  workflow?: string;
+  challenges?: string;
+  results?: string;
 };
 
 export type Certification = {
