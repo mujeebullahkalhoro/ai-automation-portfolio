@@ -25,6 +25,7 @@ export type Certification = {
 export type Experience = {
   role: string;
   organization: string;
+  location?: string;
   start: string;
   end?: string;
   summary?: string;
