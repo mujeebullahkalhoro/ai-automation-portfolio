@@ -7,6 +7,22 @@ export type Site = {
 
 export type ProjectStatus = "completed" | "in-progress" | "private";
 
+export type ProjectStep = {
+  title: string;
+  detail: string;
+  branches?: readonly Pick<ProjectStep, "title" | "detail">[];
+};
+
+export type ProjectComponent = {
+  name: string;
+  detail: string;
+};
+
+export type ProjectChallenge = {
+  challenge: string;
+  solution: string;
+};
+
 export type Project = {
   title: string;
   slug: string;
@@ -21,7 +37,10 @@ export type Project = {
   status: ProjectStatus;
   architecture?: string;
   workflow?: string;
-  challenges?: string;
+  howItWorks?: readonly ProjectStep[];
+  implementation?: readonly ProjectComponent[];
+  challenges?: readonly ProjectChallenge[];
+  businessValue?: string;
   results?: string;
 };
 
