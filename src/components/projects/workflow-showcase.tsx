@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import Image from "next/image";
+import { VideoModal } from "@/components/projects/video-modal";
 import { cn } from "@/lib/utils";
 
 type WorkflowShowcaseProps = {
@@ -11,10 +12,6 @@ type WorkflowShowcaseProps = {
   priority?: boolean;
   compact?: boolean;
 };
-
-function isDirectVideo(url: string): boolean {
-  return /\.(mp4|webm|ogg)(\?.*)?$/i.test(url);
-}
 
 function fileName(path: string): string {
   const parts = path.split("/");
@@ -39,28 +36,25 @@ export function WorkflowShowcase({
   const dialogRef = useRef<HTMLDialogElement>(null);
   const titleId = useId();
   const [failed, setFailed] = useState(false);
-  const [view, setView] = useState<"image" | "video" | null>(null);
+  const [imageOpen, setImageOpen] = useState(false);
+  const [videoOpen, setVideoOpen] = useState(false);
   const hasImage = Boolean(image) && !failed;
 
   useEffect(() => {
     const dialog = dialogRef.current;
 
-    if (!dialog || !view || dialog.open) {
+    if (!dialog || !imageOpen || dialog.open) {
       return;
     }
 
     dialog.showModal();
-  }, [view]);
+  }, [imageOpen]);
 
   if (!image && !video) {
     return null;
   }
 
-  function open(next: "image" | "video") {
-    setView(next);
-  }
-
-  function close() {
+  function closeImage() {
     dialogRef.current?.close();
   }
 
@@ -71,7 +65,14 @@ export function WorkflowShowcase({
       <button
         type="button"
         aria-label={label}
-        onClick={() => open(video ? "video" : "image")}
+        onClick={() => {
+          if (video) {
+            setVideoOpen(true);
+            return;
+          }
+
+          setImageOpen(true);
+        }}
         className="relative block w-full overflow-hidden rounded-lg border border-border bg-background text-left"
       >
         {hasImage ? (
@@ -82,6 +83,7 @@ export function WorkflowShowcase({
             height={900}
             unoptimized
             priority={priority}
+            loading={priority ? "eager" : "lazy"}
             onError={() => setFailed(true)}
             className={cn(
               "h-auto w-full object-contain",
@@ -103,66 +105,58 @@ export function WorkflowShowcase({
           <PlayIcon />
         </span>
       </button>
-      <dialog
-        ref={dialogRef}
-        aria-labelledby={titleId}
-        onClose={() => setView(null)}
-        onClick={(event) => {
-          if (event.target === event.currentTarget) {
-            event.currentTarget.close();
-          }
-        }}
-        className="m-auto w-[min(100%-2rem,72rem)] max-h-[calc(100%-2rem)] overflow-auto rounded-lg border border-border bg-surface p-4 text-foreground backdrop:bg-foreground/50 sm:p-6"
-      >
-        <div className="mb-4 flex items-start justify-between gap-4">
-          <h2 id={titleId} className="text-base font-semibold tracking-tight">
-            {title}
-          </h2>
-          <button
-            type="button"
-            onClick={close}
-            className="inline-flex h-11 items-center rounded-md px-3 text-sm font-medium"
-          >
-            Close
-          </button>
-        </div>
-        {view === "video" && video && isDirectVideo(video) ? (
-          <video
-            controls
-            autoPlay
-            playsInline
-            src={video}
-            className="aspect-video w-full rounded-md border border-border"
-          />
-        ) : null}
-        {view === "video" && video && !isDirectVideo(video) ? (
-          <a
-            href={video}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex h-11 items-center rounded-md bg-foreground px-5 text-sm font-medium text-background"
-          >
-            Play video demo
-          </a>
-        ) : null}
-        {view === "image" && hasImage ? (
-          <Image
-            src={image ?? ""}
-            alt={`${title} workflow`}
-            width={1600}
-            height={900}
-            unoptimized
-            className="mx-auto h-auto max-h-[80vh] w-full object-contain"
-          />
-        ) : null}
-        {view === "image" && !hasImage ? (
-          <p className="text-sm leading-6 text-muted">
-            {image
-              ? `${fileName(image)} has not been added yet.`
-              : "Workflow image has not been added yet."}
-          </p>
-        ) : null}
-      </dialog>
+      {video ? null : (
+        <dialog
+          ref={dialogRef}
+          aria-labelledby={titleId}
+          onClose={() => setImageOpen(false)}
+          onClick={(event) => {
+            if (event.target === event.currentTarget) {
+              event.currentTarget.close();
+            }
+          }}
+          className="m-auto w-[min(100%-2rem,72rem)] max-h-[calc(100%-2rem)] overflow-auto rounded-lg border border-border bg-surface p-4 text-foreground backdrop:bg-foreground/50 sm:p-6"
+        >
+          <div className="mb-4 flex items-start justify-between gap-4">
+            <h2 id={titleId} className="text-base font-semibold tracking-tight">
+              {title}
+            </h2>
+            <button
+              type="button"
+              onClick={closeImage}
+              className="inline-flex h-11 items-center rounded-md px-3 text-sm font-medium"
+            >
+              Close
+            </button>
+          </div>
+          {imageOpen && hasImage ? (
+            <Image
+              src={image ?? ""}
+              alt={`${title} workflow`}
+              width={1600}
+              height={900}
+              unoptimized
+              className="mx-auto h-auto max-h-[80vh] w-full object-contain"
+            />
+          ) : null}
+          {imageOpen && !hasImage ? (
+            <p className="text-sm leading-6 text-muted">
+              {image
+                ? `${fileName(image)} has not been added yet.`
+                : "Workflow image has not been added yet."}
+            </p>
+          ) : null}
+        </dialog>
+      )}
+      {video ? (
+        <VideoModal
+          title={title}
+          src={video}
+          poster={image}
+          open={videoOpen}
+          onClose={() => setVideoOpen(false)}
+        />
+      ) : null}
     </figure>
   );
 }
