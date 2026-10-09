@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
+import { About } from "@/components/about/about";
+import { Certifications } from "@/components/certifications/certifications";
+import { Contact } from "@/components/contact/contact";
+import { ExperienceTimeline } from "@/components/experience/experience-timeline";
 import { Hero } from "@/components/hero/hero";
-import { Container, sectionSpacing } from "@/components/ui";
+import { ProjectGrid } from "@/components/projects/project-grid";
+import { Skills } from "@/components/skills/skills";
+import { Container, SectionHeading, sectionAnchor } from "@/components/ui";
+import { projects } from "@/data/projects";
 import { site } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -15,11 +22,22 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <Container
-      as="main"
-      className={`flex flex-1 flex-col justify-center ${sectionSpacing}`}
-    >
+    <Container as="main" className="flex flex-1 flex-col">
       <Hero />
+      <About />
+      <Skills />
+      <ExperienceTimeline />
+      <section
+        id="projects"
+        aria-labelledby="projects-heading"
+        tabIndex={-1}
+        className={sectionAnchor}
+      >
+        <SectionHeading headingId="projects-heading" title="Projects" />
+        <ProjectGrid projects={projects} />
+      </section>
+      <Certifications />
+      <Contact />
     </Container>
   );
 }

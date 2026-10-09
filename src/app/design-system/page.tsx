@@ -55,10 +55,10 @@ export default function DesignSystemPage() {
             <Button disabled>Disabled</Button>
           </div>
           <div className="flex flex-wrap items-center gap-4">
-            <ButtonLink href="/projects" variant="secondary">
+            <ButtonLink href="/#projects" variant="secondary">
               View projects
             </ButtonLink>
-            <TextLink href="/contact">Text link</TextLink>
+            <TextLink href="/#contact">Text link</TextLink>
           </div>
         </div>
       </section>

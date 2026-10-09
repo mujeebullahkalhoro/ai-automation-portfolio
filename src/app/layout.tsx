@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import { SiteFooter } from "@/components/footer/site-footer";
+import { HashScroll } from "@/components/navigation/hash-scroll";
 import { SiteHeader } from "@/components/navigation/site-header";
 import { Container } from "@/components/ui";
 import { site } from "@/data/site";
@@ -56,6 +57,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </a>
         <Suspense fallback={<HeaderFallback />}>
           <SiteHeader />
+          <HashScroll />
         </Suspense>
         <div
           id="content"
@@ -64,7 +66,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           {children}
         </div>
-        <SiteFooter />
+        <Suspense
+          fallback={
+            <footer className="mt-auto border-t border-border">
+              <Container className="flex flex-col gap-2 py-10 sm:py-12">
+                <p className="text-sm font-semibold tracking-tight">{site.name}</p>
+                <p className="text-sm text-muted">{site.role}</p>
+              </Container>
+            </footer>
+          }
+        >
+          <SiteFooter />
+        </Suspense>
       </body>
     </html>
   );

@@ -1,11 +1,16 @@
-import { SectionHeading, Text } from "@/components/ui";
+import { SectionHeading, Text, sectionAnchor } from "@/components/ui";
 import { about } from "@/data/about";
 
 export function About() {
   return (
-    <section>
+    <section
+      id="about"
+      aria-labelledby="about-heading"
+      tabIndex={-1}
+      className={sectionAnchor}
+    >
       <SectionHeading
-        level={1}
+        headingId="about-heading"
         eyebrow={about.positioning}
         title="About"
       />

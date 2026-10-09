@@ -10,6 +10,7 @@ const headingStyles = {
 type HeadingProps = {
   children: ReactNode;
   className?: string;
+  id?: string;
   level?: 1 | 2 | 3;
   size?: 1 | 2 | 3;
 };
@@ -17,13 +18,16 @@ type HeadingProps = {
 export function Heading({
   children,
   className,
+  id,
   level = 1,
   size,
 }: HeadingProps) {
   const Tag = `h${level}` as const;
 
   return (
-    <Tag className={cn(headingStyles[size ?? level], className)}>{children}</Tag>
+    <Tag id={id} className={cn(headingStyles[size ?? level], className)}>
+      {children}
+    </Tag>
   );
 }
 

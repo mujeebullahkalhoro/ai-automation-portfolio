@@ -1,18 +1,24 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { PrimaryNav } from "@/components/navigation/primary-nav";
+import { SectionLink } from "@/components/navigation/section-link";
+import { useActiveSection } from "@/components/navigation/use-active-section";
 import { Container } from "@/components/ui";
 import { site } from "@/data/site";
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const activeId = useActiveSection();
   const [openPath, setOpenPath] = useState<string | null>(null);
   const open = openPath === pathname;
   const panelId = useId();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+
+  function closeMenu() {
+    setOpenPath(null);
+  }
 
   useEffect(() => {
     if (!open) {
@@ -33,13 +39,17 @@ export function SiteHeader() {
   }, [open]);
 
   return (
-    <header className="border-b border-border">
+    <header className="sticky top-0 z-40 border-b border-border bg-background">
       <Container className="flex h-16 items-center justify-between gap-6">
-        <Link href="/" className="text-sm font-semibold tracking-tight">
+        <SectionLink
+          id="home"
+          onNavigate={closeMenu}
+          className="text-sm font-semibold tracking-tight"
+        >
           {site.name}
-        </Link>
+        </SectionLink>
         <div className="hidden md:block">
-          <PrimaryNav label="Primary" />
+          <PrimaryNav label="Primary" activeId={activeId} />
         </div>
         <button
           ref={menuButtonRef}
@@ -52,14 +62,14 @@ export function SiteHeader() {
           {open ? "Close" : "Menu"}
         </button>
       </Container>
-      <div
-        id={panelId}
-        className={
-          open ? "border-t border-border md:hidden" : "hidden"
-        }
-      >
+      <div id={panelId} className={open ? "border-t border-border md:hidden" : "hidden"}>
         <Container>
-          <PrimaryNav label="Mobile" orientation="vertical" />
+          <PrimaryNav
+            label="Mobile"
+            orientation="vertical"
+            activeId={activeId}
+            onNavigate={closeMenu}
+          />
         </Container>
       </div>
     </header>

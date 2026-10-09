@@ -1,4 +1,6 @@
-import Link from "next/link";
+"use client";
+
+import { SectionLink } from "@/components/navigation/section-link";
 import { Container } from "@/components/ui";
 import { navigation } from "@/data/navigation";
 import { site } from "@/data/site";
@@ -14,13 +16,13 @@ export function SiteFooter() {
         <nav aria-label="Footer">
           <ul className="flex flex-wrap gap-x-5 gap-y-3">
             {navigation.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
+              <li key={item.id}>
+                <SectionLink
+                  id={item.id}
                   className="text-sm text-muted hover:text-foreground"
                 >
                   {item.label}
-                </Link>
+                </SectionLink>
               </li>
             ))}
           </ul>

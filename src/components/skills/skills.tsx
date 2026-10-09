@@ -1,4 +1,4 @@
-import { Badge, Card, CardTitle, SectionHeading } from "@/components/ui";
+import { Badge, Card, CardTitle, SectionHeading, sectionAnchor } from "@/components/ui";
 import { skillGroups } from "@/data/skills";
 import { cn } from "@/lib/utils";
 
@@ -8,8 +8,13 @@ type SkillsProps = {
 
 export function Skills({ className }: SkillsProps) {
   return (
-    <section className={cn(className)}>
-      <SectionHeading title="Skills" />
+    <section
+      id="skills"
+      aria-labelledby="skills-heading"
+      tabIndex={-1}
+      className={cn(sectionAnchor, className)}
+    >
+      <SectionHeading headingId="skills-heading" title="Skills" />
       <ul className="mt-8 grid gap-4 md:grid-cols-2">
         {skillGroups.map((group) => (
           <li key={group.name} className="min-w-0">

@@ -1,4 +1,11 @@
-import { Badge, Card, CardTitle, SectionHeading, TextLink } from "@/components/ui";
+import {
+  Badge,
+  Card,
+  CardTitle,
+  SectionHeading,
+  TextLink,
+  sectionAnchor,
+} from "@/components/ui";
 import { certifications } from "@/data/certifications";
 import type { Certification } from "@/types";
 
@@ -38,9 +45,9 @@ function FeaturedCertification({ certification }: { certification: Certification
   return (
     <Card>
       <Badge tone="accent">Specialization</Badge>
-      <h2 className="mt-4 max-w-3xl text-2xl font-semibold tracking-tight text-balance sm:text-3xl">
+      <h3 className="mt-4 max-w-3xl text-2xl font-semibold tracking-tight text-balance sm:text-3xl">
         {certification.title}
-      </h2>
+      </h3>
       <p className="mt-3 text-sm font-medium">{certification.issuer}</p>
       {certification.credentialUrl ? (
         <CredentialLink href={certification.credentialUrl}>
@@ -63,7 +70,7 @@ function FeaturedCertification({ certification }: { certification: Certification
 function CertificationCard({ certification }: { certification: Certification }) {
   return (
     <Card className="flex h-full flex-col">
-      <CardTitle level={2}>{certification.title}</CardTitle>
+      <CardTitle>{certification.title}</CardTitle>
       <p className="mt-2 text-sm text-muted">{certification.issuer}</p>
       {certification.credentialUrl ? (
         <CredentialLink href={certification.credentialUrl}>
@@ -79,8 +86,13 @@ export function Certifications() {
   const rest = certifications.filter((certification) => !certification.featured);
 
   return (
-    <section>
-      <SectionHeading level={1} title="Certifications" />
+    <section
+      id="certifications"
+      aria-labelledby="certifications-heading"
+      tabIndex={-1}
+      className={sectionAnchor}
+    >
+      <SectionHeading headingId="certifications-heading" title="Certifications" />
       {featured.length > 0 ? (
         <div className="mt-10 flex max-w-3xl flex-col gap-4">
           {featured.map((certification) => (

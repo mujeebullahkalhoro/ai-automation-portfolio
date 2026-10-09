@@ -1,20 +1,22 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { isActivePath, navigation } from "@/data/navigation";
+import { SectionLink } from "@/components/navigation/section-link";
+import { navigation } from "@/data/navigation";
 import { cn } from "@/lib/utils";
 
 type PrimaryNavProps = {
   label: string;
   orientation?: "horizontal" | "vertical";
+  activeId?: string | null;
+  onNavigate?: () => void;
 };
 
 export function PrimaryNav({
   label,
   orientation = "horizontal",
+  activeId = null,
+  onNavigate,
 }: PrimaryNavProps) {
-  const pathname = usePathname();
   const horizontal = orientation === "horizontal";
 
   return (
@@ -25,13 +27,14 @@ export function PrimaryNav({
         }
       >
         {navigation.map((item) => {
-          const active = isActivePath(pathname, item.href);
+          const active = activeId === item.id;
 
           return (
-            <li key={item.href}>
-              <Link
-                href={item.href}
-                aria-current={active ? "page" : undefined}
+            <li key={item.id}>
+              <SectionLink
+                id={item.id}
+                current={active}
+                onNavigate={onNavigate}
                 className={cn(
                   "block tracking-tight",
                   horizontal ? "py-2 text-sm" : "py-3 text-base",
@@ -41,7 +44,7 @@ export function PrimaryNav({
                 )}
               >
                 {item.label}
-              </Link>
+              </SectionLink>
             </li>
           );
         })}

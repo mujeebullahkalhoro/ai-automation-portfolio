@@ -5,6 +5,7 @@ type SectionHeadingProps = {
   title: string;
   eyebrow?: string;
   description?: string;
+  headingId?: string;
   level?: 1 | 2 | 3;
   className?: string;
 };
@@ -13,6 +14,7 @@ export function SectionHeading({
   title,
   eyebrow,
   description,
+  headingId,
   level = 2,
   className,
 }: SectionHeadingProps) {
@@ -23,7 +25,11 @@ export function SectionHeading({
           {eyebrow}
         </p>
       ) : null}
-      <Heading level={level} className={eyebrow ? "mt-3" : undefined}>
+      <Heading
+        id={headingId}
+        level={level}
+        className={eyebrow ? "mt-3" : undefined}
+      >
         {title}
       </Heading>
       {description ? (

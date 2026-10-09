@@ -3,6 +3,8 @@ import { cn } from "@/lib/utils";
 
 export const sectionSpacing = "py-16 sm:py-24 lg:py-28";
 
+export const sectionAnchor = "focus-visible:outline-none " + sectionSpacing;
+
 type ContainerProps = {
   children?: ReactNode;
   className?: string;

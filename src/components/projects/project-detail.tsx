@@ -71,7 +71,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
 
   return (
     <article className="w-full max-w-5xl">
-      <TextLink href="/projects">All projects</TextLink>
+      <TextLink href="/#projects">All projects</TextLink>
       <div className="mt-8 flex flex-wrap gap-2">
         {project.category ? (
           <Badge tone="accent">{project.category}</Badge>

@@ -63,6 +63,10 @@ export function ButtonLink({
   const classNameValue = buttonClasses(variant, size, className);
   const isExternal = external || href.startsWith("http");
 
+  if (href.startsWith("#")) {
+    return <a href={href} className={classNameValue} {...props} />;
+  }
+
   if (isExternal) {
     return (
       <a
