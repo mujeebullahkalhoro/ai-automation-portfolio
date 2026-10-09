@@ -7,6 +7,7 @@ export const projects: readonly Project[] = [
     description:
       "An n8n workflow that classifies incoming Gmail with OpenAI, summarizes the important path, continues through a Claude fallback, validates JSON, and writes the result to Notion.",
     technologies: ["n8n", "Gmail", "OpenAI", "Claude", "Notion"],
+    thumbnail: "/images/projects/ai-email-triage-workflow.png",
     featured: true,
     status: "private",
     architecture:
@@ -91,6 +92,7 @@ Notion`,
     description:
       "An n8n workflow where an AI agent takes a user query, makes a tool decision, calls SerpAPI through an Execute Workflow tool, and returns a final answer from the search results.",
     technologies: ["n8n", "AI Agent", "Execute Workflow", "SerpAPI"],
+    thumbnail: "/images/projects/ai-research-agent-workflow.png",
     featured: true,
     status: "private",
     architecture:
@@ -179,6 +181,7 @@ Final Answer`,
       "Vector Store",
       "LLM",
     ],
+    thumbnail: "/images/projects/document-rag-workflow.png",
     featured: true,
     status: "private",
     architecture:
@@ -274,6 +277,7 @@ Grounded Answer`,
     description:
       "An n8n workflow that starts from Gmail, routes messages with a Switch, applies a Gmail label on the Accounting branch, and sends a Slack alert on the Lead branch.",
     technologies: ["n8n", "Gmail", "Slack", "Switch"],
+    thumbnail: "/images/projects/gmail-slack-workflow.png",
     featured: true,
     status: "private",
     architecture:

@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
-import Image from "next/image";
 import { ProjectTags } from "@/components/projects/project-tags";
 import { formatProjectStatus } from "@/components/projects/project-status";
 import { ProjectWorkflow } from "@/components/projects/project-workflow";
+import { WorkflowShowcase } from "@/components/projects/workflow-showcase";
 import {
   Badge,
   ButtonLink,
@@ -15,10 +15,6 @@ import type { Project, ProjectStep } from "@/types";
 type ProjectDetailProps = {
   project: Project;
 };
-
-function isDirectVideo(url: string): boolean {
-  return /\.(mp4|webm|ogg)(\?.*)?$/i.test(url);
-}
 
 function StudySection({
   title,
@@ -70,56 +66,11 @@ function HowItWorks({ steps }: { steps: readonly ProjectStep[] }) {
   );
 }
 
-function ProjectMedia({ project }: { project: Project }) {
-  if (!project.video && !project.demoUrl && !project.thumbnail) {
-    return null;
-  }
-
-  return (
-    <StudySection title="Video / demo">
-      <div className="overflow-hidden rounded-lg border border-border bg-surface">
-        {project.video && isDirectVideo(project.video) ? (
-          <video
-            controls
-            playsInline
-            src={project.video}
-            className="aspect-video w-full"
-          />
-        ) : null}
-        {!project.video && project.thumbnail ? (
-          <Image
-            src={project.thumbnail}
-            alt=""
-            width={1200}
-            height={675}
-            priority
-            className="aspect-video h-auto w-full object-cover"
-          />
-        ) : null}
-        {project.video && !isDirectVideo(project.video) ? (
-          <div className="flex aspect-video items-center justify-center px-6">
-            <ButtonLink href={project.video} variant="secondary" external>
-              Watch
-            </ButtonLink>
-          </div>
-        ) : null}
-        {!project.video && !project.thumbnail && project.demoUrl ? (
-          <div className="flex aspect-video items-center justify-center px-6">
-            <ButtonLink href={project.demoUrl} external>
-              View Demo
-            </ButtonLink>
-          </div>
-        ) : null}
-      </div>
-    </StudySection>
-  );
-}
-
 export function ProjectDetail({ project }: ProjectDetailProps) {
   const hasLinks = Boolean(project.demoUrl || project.githubUrl);
 
   return (
-    <article className="max-w-3xl">
+    <article className="w-full max-w-5xl">
       <TextLink href="/projects">All projects</TextLink>
       <div className="mt-8 flex flex-wrap gap-2">
         {project.category ? (
@@ -135,13 +86,25 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
         </Text>
       ) : null}
 
+      {project.thumbnail || project.video ? (
+        <div className="mt-10">
+          <p className="mb-3 font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted">
+            Workflow
+          </p>
+          <WorkflowShowcase
+            title={project.title}
+            image={project.thumbnail}
+            video={project.video}
+            priority
+          />
+        </div>
+      ) : null}
+
       {project.technologies.length > 0 ? (
         <StudySection title="Technology stack">
           <ProjectTags technologies={project.technologies} />
         </StudySection>
       ) : null}
-
-      <ProjectMedia project={project} />
 
       {project.architecture ? (
         <StudySection title="Architecture">
