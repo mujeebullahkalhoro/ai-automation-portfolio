@@ -5,6 +5,11 @@ import { projects } from "@/data/projects";
 
 export const metadata: Metadata = {
   title: "Projects",
+  description:
+    "Case studies of AI automation workflows, including email triage, research, document retrieval, and Gmail routing.",
+  alternates: {
+    canonical: "/projects",
+  },
 };
 
 export default function ProjectsPage() {

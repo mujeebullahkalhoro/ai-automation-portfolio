@@ -88,9 +88,9 @@ export function VideoModal({ title, src, poster, open, onClose }: VideoModalProp
       className="m-auto w-[min(100%-1.5rem,56rem)] max-h-[calc(100dvh-1.5rem)] overflow-auto rounded-lg border border-border bg-surface p-4 text-foreground backdrop:bg-foreground/50 sm:p-6"
     >
       <div className="mb-4 flex items-start justify-between gap-4">
-        <h2 id={titleId} className="text-base font-semibold tracking-tight">
+        <p id={titleId} className="text-base font-semibold tracking-tight">
           {title}
-        </h2>
+        </p>
         <button
           type="button"
           onClick={() => dialogRef.current?.close()}

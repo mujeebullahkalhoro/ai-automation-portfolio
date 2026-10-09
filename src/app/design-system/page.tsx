@@ -15,6 +15,10 @@ import {
 
 export const metadata: Metadata = {
   title: "Design system",
+  description: "Type, actions, tags, and surfaces used across the portfolio.",
+  alternates: {
+    canonical: "/design-system",
+  },
 };
 
 export default function DesignSystemPage() {

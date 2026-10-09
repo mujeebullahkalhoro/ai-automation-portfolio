@@ -4,6 +4,11 @@ import { Container, sectionSpacing } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "Certifications",
+  description:
+    "Completed courses and specializations, including AI Automation Engineer with n8n from LearnKartS and Coursera.",
+  alternates: {
+    canonical: "/certifications",
+  },
 };
 
 export default function CertificationsPage() {

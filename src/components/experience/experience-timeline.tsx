@@ -38,7 +38,9 @@ export function ExperienceTimeline() {
                   <Text variant="small" className="font-mono tracking-wide">
                     {formatPeriod(item)}
                   </Text>
-                  <CardTitle className="mt-3">{item.role}</CardTitle>
+                  <CardTitle level={2} className="mt-3">
+                    {item.role}
+                  </CardTitle>
                   <p className="mt-2 text-sm font-medium">{item.organization}</p>
                   {item.location ? (
                     <p className="mt-1 text-sm text-muted">{item.location}</p>

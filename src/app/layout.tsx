@@ -19,10 +19,16 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: site.name,
+    default: site.title,
     template: `%s | ${site.name}`,
   },
   description: site.summary,
+  applicationName: site.name,
+  openGraph: {
+    type: "website",
+    siteName: site.name,
+    locale: "en_US",
+  },
 };
 
 function HeaderFallback() {

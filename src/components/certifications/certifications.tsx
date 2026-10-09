@@ -63,7 +63,7 @@ function FeaturedCertification({ certification }: { certification: Certification
 function CertificationCard({ certification }: { certification: Certification }) {
   return (
     <Card className="flex h-full flex-col">
-      <CardTitle>{certification.title}</CardTitle>
+      <CardTitle level={2}>{certification.title}</CardTitle>
       <p className="mt-2 text-sm text-muted">{certification.issuer}</p>
       {certification.credentialUrl ? (
         <CredentialLink href={certification.credentialUrl}>

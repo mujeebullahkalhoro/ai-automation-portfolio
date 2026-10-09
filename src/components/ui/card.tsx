@@ -25,14 +25,18 @@ export function Card({ children, className, interactive = false }: CardProps) {
 export function CardTitle({
   children,
   className,
+  level = 3,
 }: {
   children: ReactNode;
   className?: string;
+  level?: 2 | 3;
 }) {
+  const Tag = level === 2 ? "h2" : "h3";
+
   return (
-    <h3 className={cn("text-lg font-semibold tracking-tight", className)}>
+    <Tag className={cn("text-lg font-semibold tracking-tight", className)}>
       {children}
-    </h3>
+    </Tag>
   );
 }
 

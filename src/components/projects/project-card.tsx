@@ -30,7 +30,7 @@ export function ProjectCard({ project, layout = "standard" }: ProjectCardProps) 
           <Badge>{formatProjectStatus(project.status)}</Badge>
           {project.featured ? <Badge>Featured</Badge> : null}
         </div>
-        <CardTitle className={cn("mt-4", featured && "text-2xl sm:text-3xl")}>
+        <CardTitle level={2} className={cn("mt-4", featured && "text-2xl sm:text-3xl")}>
           <Link href={`/projects/${project.slug}`}>{project.title}</Link>
         </CardTitle>
         {project.description ? (

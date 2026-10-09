@@ -1,6 +1,7 @@
 export type Site = {
   name: string;
   role: string;
+  title: string;
   summary: string;
   github: string;
 };
