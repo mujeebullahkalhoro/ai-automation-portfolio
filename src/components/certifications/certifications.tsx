@@ -96,7 +96,10 @@ export function Certifications() {
           className={`grid max-w-5xl gap-4 md:grid-cols-2 ${featured.length > 0 ? "mt-8" : "mt-10"}`}
         >
           {rest.map((certification) => (
-            <li key={`${certification.issuer}-${certification.title}`}>
+            <li
+              key={`${certification.issuer}-${certification.title}`}
+              className="min-w-0"
+            >
               <CertificationCard certification={certification} />
             </li>
           ))}

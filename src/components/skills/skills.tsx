@@ -12,7 +12,7 @@ export function Skills({ className }: SkillsProps) {
       <SectionHeading title="Skills" />
       <ul className="mt-8 grid gap-4 md:grid-cols-2">
         {skillGroups.map((group) => (
-          <li key={group.name}>
+          <li key={group.name} className="min-w-0">
             <Card className="h-full">
               <CardTitle>{group.name}</CardTitle>
               <ul className="mt-5 flex flex-wrap gap-2">

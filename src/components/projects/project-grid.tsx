@@ -20,7 +20,7 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
       {featuredRest.length > 0 ? (
         <ul className="grid gap-4 md:grid-cols-2">
           {featuredRest.map((project) => (
-            <li key={project.slug}>
+            <li key={project.slug} className="min-w-0">
               <ProjectCard project={project} />
             </li>
           ))}
@@ -29,7 +29,7 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
       {rest.length > 0 ? (
         <ul className="grid gap-4 md:grid-cols-2">
           {rest.map((project) => (
-            <li key={project.slug}>
+            <li key={project.slug} className="min-w-0">
               <ProjectCard project={project} />
             </li>
           ))}

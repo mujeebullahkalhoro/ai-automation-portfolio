@@ -22,6 +22,16 @@ export function Card({ children, className, interactive = false }: CardProps) {
   );
 }
 
+function hasTextSize(className?: string) {
+  if (!className) {
+    return false;
+  }
+
+  return className.split(/\s+/).some((token) =>
+    /^(?:[\w-]+:)*text-(?:xs|sm|base|lg|xl|[2-9]xl|\[[^\]]+\])$/.test(token),
+  );
+}
+
 export function CardTitle({
   children,
   className,
@@ -34,7 +44,13 @@ export function CardTitle({
   const Tag = level === 2 ? "h2" : "h3";
 
   return (
-    <Tag className={cn("text-lg font-semibold tracking-tight", className)}>
+    <Tag
+      className={cn(
+        "font-semibold tracking-tight text-balance",
+        !hasTextSize(className) && "text-lg",
+        className,
+      )}
+    >
       {children}
     </Tag>
   );

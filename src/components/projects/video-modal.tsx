@@ -88,13 +88,13 @@ export function VideoModal({ title, src, poster, open, onClose }: VideoModalProp
       className="m-auto w-[min(100%-1.5rem,56rem)] max-h-[calc(100dvh-1.5rem)] overflow-auto rounded-lg border border-border bg-surface p-4 text-foreground backdrop:bg-foreground/50 sm:p-6"
     >
       <div className="mb-4 flex items-start justify-between gap-4">
-        <p id={titleId} className="text-base font-semibold tracking-tight">
+        <p id={titleId} className="min-w-0 flex-1 text-base font-semibold tracking-tight text-balance">
           {title}
         </p>
         <button
           type="button"
           onClick={() => dialogRef.current?.close()}
-          className="inline-flex h-11 shrink-0 items-center rounded-md px-3 text-sm font-medium"
+          className="inline-flex h-11 shrink-0 items-center rounded-md border border-border px-3 text-sm font-medium"
         >
           Close
         </button>
@@ -108,7 +108,16 @@ export function VideoModal({ title, src, poster, open, onClose }: VideoModalProp
           poster={poster}
           src={src}
           className="aspect-video w-full rounded-md border border-border bg-background"
-          onError={() => setFailed(true)}
+          onError={() => {
+            const restore = document.activeElement === videoRef.current;
+            setFailed(true);
+
+            if (restore) {
+              requestAnimationFrame(() => {
+                dialogRef.current?.querySelector("button")?.focus();
+              });
+            }
+          }}
         />
       ) : null}
       {open && failed ? (

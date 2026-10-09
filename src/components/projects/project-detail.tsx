@@ -130,7 +130,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
             {project.implementation.map((component) => (
               <li
                 key={component.name}
-                className="rounded-lg border border-border bg-surface p-5"
+                className="min-w-0 rounded-lg border border-border bg-surface p-5"
               >
                 <h3 className="font-mono text-xs font-medium uppercase tracking-[0.16em] text-accent">
                   {component.name}
