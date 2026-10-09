@@ -49,6 +49,8 @@ export type Certification = {
   issuer: string;
   issuedAt?: string;
   credentialUrl?: string;
+  featured?: boolean;
+  courses?: readonly string[];
 };
 
 export type Experience = {
