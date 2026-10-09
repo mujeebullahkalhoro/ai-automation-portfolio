@@ -55,6 +55,10 @@ body {
   outline-offset: 3px;
 }
 
+#home :focus-visible {
+  outline-color: #8de0c1;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

@@ -22,22 +22,24 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <Container as="main" className="flex flex-1 flex-col">
+    <main className="flex flex-1 flex-col">
       <Hero />
-      <About />
-      <Skills />
-      <ExperienceTimeline />
-      <section
-        id="projects"
-        aria-labelledby="projects-heading"
-        tabIndex={-1}
-        className={sectionAnchor}
-      >
-        <SectionHeading headingId="projects-heading" title="Projects" />
-        <ProjectGrid projects={projects} />
-      </section>
-      <Certifications />
-      <Contact />
-    </Container>
+      <Container className="flex flex-1 flex-col">
+        <About />
+        <Skills />
+        <ExperienceTimeline />
+        <section
+          id="projects"
+          aria-labelledby="projects-heading"
+          tabIndex={-1}
+          className={sectionAnchor}
+        >
+          <SectionHeading headingId="projects-heading" title="Projects" />
+          <ProjectGrid projects={projects} />
+        </section>
+        <Certifications />
+        <Contact />
+      </Container>
+    </main>
   );
 }
