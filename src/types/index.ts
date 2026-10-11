@@ -47,13 +47,22 @@ export type Project = {
   results?: string;
 };
 
+export type CertificationCourse = {
+  title: string;
+  issuer: string;
+  credentialUrl: string;
+};
+
 export type Certification = {
   title: string;
   issuer: string;
   issuedAt?: string;
   credentialUrl?: string;
   featured?: boolean;
-  courses?: readonly string[];
+  category?: string;
+  type?: "specialization" | "course" | "track";
+  description?: string;
+  courses?: readonly CertificationCourse[];
 };
 
 export type Experience = {
