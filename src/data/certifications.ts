@@ -60,28 +60,20 @@ export const featuredCertification = {
 
 export const additionalCredentials: readonly Certification[] = [
   {
-    title: "Developing Back-End Apps with Node.js and Express",
-    issuer: "Coursera",
+    title: "Google AI Essentials",
+    issuer: "Google · Coursera",
     credentialUrl:
-      "https://www.coursera.org/account/accomplishments/verify/VNF7XAA5USNW",
-    category: "Backend & Development",
-    type: "course",
+      "https://www.coursera.org/account/accomplishments/specialization/0EIEEYWSIOUZ",
+    category: "Google AI & Prompt Engineering",
+    type: "specialization",
   },
   {
-    title: "Introduction to Git and GitHub",
-    issuer: "Coursera",
+    title: "Google Prompting Essentials Specialization",
+    issuer: "Google · Coursera",
     credentialUrl:
-      "https://www.coursera.org/account/accomplishments/verify/APXMEL2W10CY",
-    category: "Backend & Development",
-    type: "course",
-  },
-  {
-    title: "FastAPI",
-    issuer: "DataCamp",
-    credentialUrl:
-      "https://www.datacamp.com/completed/statement-of-accomplishment/course/bf1015bb0e0ea54e0bd0cf1586cd63d15686e8d9",
-    category: "Backend & Development",
-    type: "course",
+      "https://www.coursera.org/account/accomplishments/specialization/B6HAR93U54LM",
+    category: "Google AI & Prompt Engineering",
+    type: "specialization",
   },
   {
     title: "Supervised Machine Learning: Regression and Classification",
@@ -108,20 +100,28 @@ export const additionalCredentials: readonly Certification[] = [
     type: "course",
   },
   {
-    title: "Google Prompting Essentials Specialization",
-    issuer: "Google · Coursera",
+    title: "Developing Back-End Apps with Node.js and Express",
+    issuer: "Coursera",
     credentialUrl:
-      "https://www.coursera.org/account/accomplishments/specialization/B6HAR93U54LM",
-    category: "Google AI & Prompt Engineering",
-    type: "specialization",
+      "https://www.coursera.org/account/accomplishments/verify/VNF7XAA5USNW",
+    category: "Backend & Development",
+    type: "course",
   },
   {
-    title: "Google AI Essentials",
-    issuer: "Google · Coursera",
+    title: "Introduction to Git and GitHub",
+    issuer: "Coursera",
     credentialUrl:
-      "https://www.coursera.org/account/accomplishments/specialization/0EIEEYWSIOUZ",
-    category: "Google AI & Prompt Engineering",
-    type: "specialization",
+      "https://www.coursera.org/account/accomplishments/verify/APXMEL2W10CY",
+    category: "Backend & Development",
+    type: "course",
+  },
+  {
+    title: "FastAPI",
+    issuer: "DataCamp",
+    credentialUrl:
+      "https://www.datacamp.com/completed/statement-of-accomplishment/course/bf1015bb0e0ea54e0bd0cf1586cd63d15686e8d9",
+    category: "Backend & Development",
+    type: "course",
   },
   {
     title: "DataCamp Course Certificate",

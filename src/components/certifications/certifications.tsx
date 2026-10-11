@@ -408,7 +408,7 @@ export function Certifications() {
         <div className="flex items-center justify-between gap-4">
           <div className="min-w-0 max-w-2xl">
             <h3 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
-              Additional certifications
+              Other certifications
             </h3>
             <p className="mt-2 text-sm leading-6 text-muted">
               Further learning in AI, machine learning, NLP, and software development.
@@ -441,7 +441,7 @@ export function Certifications() {
           <ul
             id={carouselId}
             ref={scrollerRef}
-            aria-label="Additional certifications"
+            aria-label="Other certifications"
             tabIndex={0}
             onKeyDown={onScrollerKeyDown}
             className="mt-6 flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
