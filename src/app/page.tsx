@@ -38,8 +38,8 @@ export default function Home() {
           <ProjectGrid projects={projects} />
         </section>
         <Certifications />
-        <Contact />
       </Container>
+      <Contact />
     </main>
   );
 }

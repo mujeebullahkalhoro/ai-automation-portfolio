@@ -4,6 +4,8 @@ export type Site = {
   title: string;
   summary: string;
   github: string;
+  linkedin: string;
+  email: string;
 };
 
 export type ProjectStatus = "completed" | "in-progress" | "private";
